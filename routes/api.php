@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RegisterUserController;
+use App\Http\Controllers\SessionUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('user/register',[RegisterUserController::class,'register']);
+Route::post('user/login',[SessionUserController::class,'login']);
 
