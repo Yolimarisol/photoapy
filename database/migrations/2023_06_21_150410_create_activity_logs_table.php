@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
-            $table->uuid('id')->unique();
+        Schema::create('activity_logs', function (Blueprint $table) {
+            $table->id();
+            $table->string('description');
             $table->foreignId('users_id')->constrained();
-            $table->string('title');
-            $table->text('description');
             $table->timestamps();
-            $table->string('path');
-            $table->string('disk');
         });
     }
 
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('activity_logs');
     }
 };
