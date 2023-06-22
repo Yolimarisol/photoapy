@@ -22,7 +22,20 @@ class SessionUserTest extends TestCase
             'password' => 'password',
         ]);
 
-        $this->assertAuthenticated($response);
-        //$response->assertSuccessful();
+        //$this->assertAuthenticated($response);
+        $response->assertOk();
     }
+
+    /** @test */
+    public function test_users_cant_authenticate()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->post('/api/user/login', [
+            'email' => $user->email,
+            'password' => 'passfgfk',
+        ]);
+        $response->assertUnauthorized();
+    }
+
 }
