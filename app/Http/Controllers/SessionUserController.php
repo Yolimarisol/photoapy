@@ -29,4 +29,12 @@ class SessionUserController extends Controller
 
         return response()->json($response);
     }
+
+    public function logout()
+    {
+        auth()->user()->tokens()->delete();
+        $message = ['message'=>'You have successfully logged out'];
+
+        return response()->json($message);
+    }
 }

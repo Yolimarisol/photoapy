@@ -38,4 +38,6 @@ class SessionUserTest extends TestCase
         $response->assertUnauthorized();
     }
 
+    /** @test */
+    
 }
