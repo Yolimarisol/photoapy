@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionUserController;
 use Illuminate\Auth\Events\Logout;
@@ -23,6 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('user/register',[RegisterUserController::class,'register']);
 Route::post('user/login',[SessionUserController::class,'login']);
+Route::post('user/forgot-password',[PasswordController::class,'sendResetLinkResponse']);
+Route::post('user/reset-password',[PasswordController::class,'sendResetResponse']);
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('user/logout',[SessionUserController::class,'logout']);
