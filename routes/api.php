@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\RegisterUserController;
+use App\Http\Controllers\SessionUserController;
+use Illuminate\Auth\Events\Logout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +20,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::post('user/register',[RegisterUserController::class,'register']);
+Route::post('user/login',[SessionUserController::class,'login']);
+
+Route::post('user/forgot-password',[PasswordController::class,'sendResetLinkResponse']);
+Route::post('user/reset-password',[PasswordController::class,'sendResetResponse']);
+
+Route::middleware('auth:sanctum')->group(function(){
+    Route::get('user/logout',[SessionUserController::class,'logout']);
 });
