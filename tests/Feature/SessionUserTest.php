@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class SessionUserTest extends TestCase
@@ -38,20 +39,15 @@ class SessionUserTest extends TestCase
         $response->assertUnauthorized();
     }
 
-    // /** @test */
-    // public function test_users_can_loguot()
-    // {
-    //     $user = User::factory()->create();
-
-    //     $this->post('/api/user/login', [
-    //         'email' => $user->email,
-    //         'password' => 'password',
-    //     ]);
-    //     $response = $this->get('/api/user/logout',[
-    //         'accessToken'=> $user->$token,
-    //         'token_type'=>'Bearer'
-    //     ]);
-    //     $response->assertOk();
-    // }
+    /** @test */
+    public function test_users_can_loguot()
+    {
+        Sanctum::actingAs(
+            User::factory()->create(),
+            ['*']
+        );
+        $response = $this->get('/api/user/logout');
+        $response->assertOk();
+    }
 
 }

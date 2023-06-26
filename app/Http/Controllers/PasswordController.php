@@ -45,34 +45,6 @@ class PasswordController extends Controller
         return response()->json($message, 200);
     }
 
-    public function reset(ResetPasswordRequest $request)
-    {
-        $request->validated();
-
-        $status = Password::reset(
-            $request->only('email', 'password', 'token'),
-            function ($user) use ($request) {
-                $user->forceFill([
-                    'password' => bcrypt($request->password),
-                ])->save();
-
-                $user->tokens()->delete();
-
-                event(new PasswordReset($user));
-            }
-        );
-
-        if ($status == Password::PASSWORD_RESET) {
-            return response([
-                'message'=> 'Password reset successfully'
-            ]);
-        }
-
-        return response([
-            'message'=> __($status)
-        ], 500);
-
-    }
     public function sendResetResponse(ResetPasswordRequest $request){
         // Store the data in an array
         $input = array(

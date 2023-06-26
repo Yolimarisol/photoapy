@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionUserController;
@@ -30,4 +31,5 @@ Route::post('user/reset-password',[PasswordController::class,'sendResetResponse'
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('user/logout',[SessionUserController::class,'logout']);
+    Route::post('image/store',[ImageController::class,'store']);
 });
