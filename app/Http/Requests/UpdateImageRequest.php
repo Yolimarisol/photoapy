@@ -22,7 +22,9 @@ class UpdateImageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title'=>'string|unique:images',
+            'description'=>'string',
+            'path'=>'string',
         ];
     }
 }

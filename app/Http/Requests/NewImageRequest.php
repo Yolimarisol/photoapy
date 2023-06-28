@@ -22,11 +22,9 @@ class NewImageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'=>'required|string',
-            //'users_id'=>'required|integer',
+            'title'=>'required|string|unique:images',
             'description'=>'required',
             'path'=>'required',
-            //'disk'=>'required'
         ];
     }
 }

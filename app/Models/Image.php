@@ -18,7 +18,8 @@ class Image extends Model
         'users_id',
         'description',
         'path',
-        'disk'
+        'disk',
+        'updated_at'
     ];
-    
+
 }

@@ -31,5 +31,10 @@ Route::post('user/reset-password',[PasswordController::class,'sendResetResponse'
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('user/logout',[SessionUserController::class,'logout']);
+
     Route::post('image/store',[ImageController::class,'store']);
+    Route::get('image/index',[ImageController::class,'index']);
+    Route::get('image/show',[ImageController::class,'show']);
+    Route::put('image/update/{id}',[ImageController::class,'update']);
+    Route::delete('image/delete/{id}',[ImageController::class,'delete'])->middleware('delete');
 });
