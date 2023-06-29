@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('collections_images', function (Blueprint $table) {
+            $table->primary(array('collections_id', 'images_id'));
             $table->uuid('collections_id');
             $table->index('collections_id');
             $table->foreign('collections_id')->references('id')->on('collections')->onDelete('cascade');

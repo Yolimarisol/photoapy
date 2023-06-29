@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ResetPasswordRequest extends FormRequest
+class NewImageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,9 @@ class ResetPasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'token' => 'required',
-            'email' => 'required|email',
-            'password' => ['required','min:7','max:255']
+            'title'=>'required|string|unique:images',
+            'description'=>'required',
+            'path'=>'required',
         ];
     }
 }
