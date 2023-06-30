@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityLogController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\RegisterUserController;
@@ -45,4 +46,5 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::put('collection/update/{id}',[CollectionController::class,'update']);
     Route::delete('collection/delete/{id}',[CollectionController::class,'delete']);
     Route::post('collection/image/{id}',[CollectionController::class,'addImage']);
+    Route::get('activities/list',[ActivityLogController::class,'listmyactivities']);
 });
