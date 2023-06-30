@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->timestamps();
             $table->string('path');
+            $table->string('image');
             $table->string('disk');
         });
     }
