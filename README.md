@@ -1,4 +1,4 @@
-<h1>PHOTOAPY</h1><hr>
+<h1>PHOTOAPY</h1>
 <h2>System Prerequisites</h2>
 
 <p><b>You need to have:</b></p>
