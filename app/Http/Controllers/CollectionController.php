@@ -49,9 +49,24 @@ class CollectionController extends Controller
         return response()->json($colllection);
     }
 
-    public function show()
+    public function show($id)
     {
+        $collection=Collection::where("collections.id", '=',$id)
+                        ->select(
+                            'collections.id',
+                            'collections.title',
+                            'collections.users_id',
+                            'collections.description',
+                            'users.name AS users'
+                        )
+                        ->join("users","collections.users_id","=","users.id")
+                        ->first();
 
+        if ($collection== null){
+            $mensaje= array('error'=>'Collection not found');
+            return response()->json($mensaje,404);
+            }
+        return response()->json($collection);
     }
 
     public function update(UpdateCollectionRequest $request,$id)
