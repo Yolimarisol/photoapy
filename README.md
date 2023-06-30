@@ -50,6 +50,6 @@ Run the migrations with data seeding with the command:</p>
 <p>./vendor/bin/sail artisan migrate:fresh --seed</p>
 <h3>Step Six</h3>
 <p>You can try the api in postman for this I share the following collection</p>
-<p><a>https://grey-moon-690845.postman.co/workspace/Team-Workspace~27275328-b5af-4d65-823a-1a9b34e5c4e5/collection/26853360-371d5b08-e618-4fa1-90c6-2b067522cf7e?action=share&creator=26853360</a></p>
+<p><a> https://grey-moon-690845.postman.co/workspace/Team-Workspace~27275328-b5af-4d65-823a-1a9b34e5c4e5/collection/26853360-371d5b08-e618-4fa1-90c6-2b067522cf7e?action=share&creator=26853360 </a></p>
 
 
