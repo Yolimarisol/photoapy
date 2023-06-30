@@ -4,6 +4,7 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionUserController;
+use App\Http\Controllers\CollectionController;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,7 +35,13 @@ Route::middleware('auth:sanctum')->group(function(){
 
     Route::post('image/store',[ImageController::class,'store']);
     Route::get('image/index',[ImageController::class,'index']);
-    Route::get('image/show',[ImageController::class,'show']);
+    Route::get('image/show/{id}',[ImageController::class,'show']);
     Route::put('image/update/{id}',[ImageController::class,'update']);
-    Route::delete('image/delete/{id}',[ImageController::class,'delete'])->middleware('delete');
+    Route::delete('image/delete/{id}',[ImageController::class,'delete']);
+
+    Route::post('collection/create',[CollectionController::class,'create']);
+    Route::get('collection/index',[CollectionController::class,'index']);
+    Route::get('collection/show',[CollectionController::class,'show']);
+    Route::put('collection/update/{id}',[CollectionController::class,'update']);
+    Route::delete('collection/delete/{id}',[CollectionController::class,'delete']);
 });

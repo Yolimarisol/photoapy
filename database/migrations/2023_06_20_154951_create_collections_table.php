@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('collections', function (Blueprint $table) {
             $table->uuid('id')->unique();
             $table->string('title');
+            $table->foreignId('users_id')->constrained();
             $table->text('description');
             $table->timestamps();
         });

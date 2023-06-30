@@ -46,10 +46,10 @@ class ImageController extends Controller
         $image = Image::all();
         return response()->json($image);
     }
-    public function show(Request $request)
+    public function show($id)
     {
 
-        $image=Image::where("images.title", 'like','%'.$request->title.'%')
+        $image=Image::where("images.title", '=',$id)
                         ->select(
                             'images.id',
                             'images.title',

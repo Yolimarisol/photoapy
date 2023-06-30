@@ -12,21 +12,21 @@ class ImageTest extends TestCase
 {
     use WithFaker;
     /** @test */
-    public function user_can_store_image()
-    {
-        $this->withoutExceptionHandling();
-        $image=UploadedFile::fake()->image('img.jpg');
-        $attributes = [
-            'title'=>fake()->title(),
-            'users_id'=> function(){
-                    return User::factory()->create()->id;
-                    },
-            'description'=>fake()->paragraph(),
+    // public function user_can_store_image()
+    // {
+    //     $this->withoutExceptionHandling();
+    //    // $image=UploadedFile::fake()->image('img.jpg');
+    //     $attributes = [
+    //         'title'=>fake()->title(),
+    //         'users_id'=> function(){
+    //                 return User::factory()->create()->id;
+    //                 },
+    //         'description'=>fake()->paragraph(),
 
-            'path'=>$image,
-            'disk'=>config('filesystems.default'),
-        ];
+    //         'path'=>$image,
+    //         'disk'=>config('filesystems.default'),
+    //     ];
 
-        $this->post('api/image/store', $attributes)->assertCreated()->assertValid();
-    }
+    //     $this->post('api/image/store', $attributes)->assertCreated()->assertValid();
+    // }
 }

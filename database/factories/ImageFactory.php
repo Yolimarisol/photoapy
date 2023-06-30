@@ -6,9 +6,9 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Collection>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Image>
  */
-class CollectionFactory extends Factory
+class ImageFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -22,7 +22,9 @@ class CollectionFactory extends Factory
             'title'=>$this->faker->sentence(),
             'users_id'=>User::all()->random(number:1)->first()->id,
             'description'=>$this->faker->paragraph(),
-            'update_at'=>now()
+            'path'=>$this->faker->image($dir = 'img', $width = 640, $height = 480) ,
+            'disk'=>config('filesystems.default'),
+            'updated_at'=>now()
         ];
     }
 }
