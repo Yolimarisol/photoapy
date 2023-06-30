@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\NewCollectionRequest;
 use App\Http\Requests\UpdateCollectionRequest;
 use App\Models\Collection;
+use App\Models\Image;
 use DateTime;
 use Illuminate\Http\Request;
 
@@ -28,12 +29,17 @@ class CollectionController extends Controller
     public function addImage(Request $request,$id)
     {
         $collection= Collection::where("id", $id)->first();
-        $collection->images()->attach($id);
+
+        $image = Image::where('id','=',$request->id);
+        $collection->images()->attach($image->id);
+
+        return response()->json(['message'=>'You are added image']);
     }
 
-    public function index(Collection $collection)
+    public function index()
     {
-        return $collection->images;
+        $colllection =Collection::all();
+        return response()->json($colllection);
     }
 
     public function show()
