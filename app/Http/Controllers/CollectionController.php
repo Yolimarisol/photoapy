@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\NewCollectionRequest;
 use App\Http\Requests\UpdateCollectionRequest;
+use App\Models\ActivityLog;
 use App\Models\Collection;
 use DateTime;
 use Illuminate\Http\Request;
@@ -19,6 +20,12 @@ class CollectionController extends Controller
             'users_id'=>$owner
         ];
         $newCollection=Collection::create($data);
+        $activity= [
+            'users_id'=>$owner,
+            'description'=>'You have created a new collection: '. $request->title
+        ];
+        $activities = ActivityLog::create($activity);
+
         $message = [
             'message'=>'Collection created successfully',
         ];
@@ -58,6 +65,13 @@ class CollectionController extends Controller
         if ($changes>0){
             $collection->updated_at = $current;
         }
+        $owner = auth()->id();
+        $activity= [
+            'users_id'=>$owner,
+            'description'=>'You have updated a collection: '. $collection->title
+        ];
+
+        $activities = ActivityLog::create($activity);
 
         $collection->save();
 
@@ -74,6 +88,14 @@ class CollectionController extends Controller
         $collection = Collection::findOrFail($id);
 
         $collection->delete();
+
+        $owner = auth()->id();
+        $activity= [
+            'users_id'=>$owner,
+            'description'=>'You have deleted a collection: '. $collection->title
+        ];
+
+        $activities = ActivityLog::create($activity);
         $message=[
             'data' => $collection,
             'message' => 'Record Deleted',

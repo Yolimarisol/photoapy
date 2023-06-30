@@ -19,6 +19,7 @@ class Image extends Model
         'users_id',
         'description',
         'path',
+        'image',
         'disk',
         'updated_at'
     ];
